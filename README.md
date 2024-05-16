@@ -21,6 +21,68 @@ export default defineConfig({
 docker-compose exec client bash
 
 
+# Jestの設定とテストの実行手順
+
+## 必要なパッケージのインストール
+npm install --save-dev jest @types/jest
+npm install --save-dev babel-jest @babel/core @babel/preset-env @babel/preset-typescript
+
+## client\.babelrc
+```JSON
+{
+  "presets": ["@babel/preset-env", "@babel/preset-typescript"]
+}
+```
+
+## client\jest.config.js
+```js
+export default {
+  transform: {
+    "^.+\\.(ts|tsx)$": "babel-jest",
+  },
+  testEnvironment: "node",
+};
+```
+
+## client\__tests__\example.test.tsx
+```ts
+import { describe, it, expect } from "@jest/globals";
+
+describe("Example Component Test", () => {
+  it("should be true", () => {
+    expect(true).toBe(true);
+  });
+});
+```
+
+## client\package.json
+```json
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "preview": "vite preview",
+    "test": "jest"  追加
+  },
+```
+
+# React18 以降はこう書く
+
+```jsx:main.jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
 # 開発環境構築
 
 ```shell
