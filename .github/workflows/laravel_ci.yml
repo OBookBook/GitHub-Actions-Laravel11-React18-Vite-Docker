@@ -69,3 +69,20 @@ jobs:
         run: |
           cd api
           ./vendor/bin/phpcs --standard=PSR12 app/
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
+
+      # - name: Deploy to EC2
+      #   run: |
+      #     ssh ${{ secrets.USER }}@${{ secrets.HOST }} << 'EOF'
+      #       cd /path/to/your/app
+      #       git pull origin master
+      #       composer install --no-dev --optimize-autoloader
+      #       php artisan migrate --force
+      #       php artisan config:cache
+      #     EOF
