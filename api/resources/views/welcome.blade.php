@@ -93,11 +93,7 @@
                                             <h2 class="text-xl font-semibold text-black dark:text-white">こんにちわ！！！！ iwamoto</h2>
 
                                             <p class="mt-4 text-sm/relaxed">
-                                                更新されてる？？？？？
-                                                更新されてる？？？？？
-                                                更新されてる？？？？？
-                                                更新されてる？？？？？
-                                                更新されてる？？？？？
+                                                CDを構築しまししたてすと
                                             </p>
                                         </div>
                                     </div>
